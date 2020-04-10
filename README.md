@@ -1,2 +1,2 @@
 # Algorithm  
-This is about Algorithm`s class homework code.  
+This is about solving Algorithm`s problems.
