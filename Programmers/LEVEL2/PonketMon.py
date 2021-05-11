@@ -28,8 +28,10 @@ def solution_mine(nums):
     answer = 0
 
     comb_nums = list(combinations(nums, len(nums) // 2))
+    print(comb_nums)
     no_dup_comb_nums = sorted([set(item) for item in comb_nums], key=lambda x: len(x),
                               reverse=True)
+    print(no_dup_comb_nums)
     answer = len(no_dup_comb_nums[0])
     return answer
 
@@ -42,6 +44,6 @@ def solution_best(nums):
 
     return answer
 
-print(solution_best(nums_1))
-print(solution_best(nums_2))
-print(solution_best(nums_3))
+# print(solution_best(nums_1))
+# print(solution_best(nums_2))
+# print(solution_best(nums_3))
