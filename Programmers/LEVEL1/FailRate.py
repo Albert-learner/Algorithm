@@ -1,35 +1,25 @@
 # 38. 실패율
 
-# 내 풀이 X ... 뭔가 어렵네...
+# 내 풀이
 def solution(N, stages):
     answer = []
 
-    # 스테이지 도달한 플레이어 수 ... k
-    success_players = len(stages)
+    # 실패율 딕셔너리
+    result = {}
 
-    # 실패율 리스트
-    failing_rate_lst = []
+    # 도달한 플레이어 수 ... 매 단계마다 바뀔 수 있다
+    denominator = len(stages)
 
-    for i in range(1, N + 1):
-        # 스테이지 도달했으나 클리어하지 못한 플레이어 수
-        failing_cnt = 0
-        for j in range(len(stages)):
-            if stages[j] == i:
-                failing_cnt += 1
-
-        if failing_cnt == 0:
-            failing_rate_lst.append(0)
+    for stage in range(1, N + 1):
+        if denominator != 0:
+            fail_cnt = stages.count(stage)
+            result[stage] = fail_cnt / denominator
+            denominator -= fail_cnt
         else:
-            failing_rate_lst.append(failing_cnt / success_players)
-        success_players = success_players - failing_cnt
+            result[stage] = 0
 
-    failing_rate_reverse_sort = sorted(failing_rate_lst, reverse = True)
-    # print(failing_rate_reverse_sort)
-
-    for i in range(len(failing_rate_reverse_sort)):
-        answer.append(failing_rate_lst.index(failing_rate_reverse_sort[i]) + 1)
-        failing_rate_lst[failing_rate_lst.index(failing_rate_reverse_sort[i])] = 2
-
+    answer = sorted(result, key=lambda x: result[x],
+                    reverse = True)
     return answer
 
 N_1 = 5
@@ -42,10 +32,39 @@ stages_2 = [4, 4, 4, 4, 4]
 # print(solution(N_2, stages_2))
 
 # 이중 리스트 풀이 ... [2, 1, 2, 6, 2, 4, 3, 3] -> [[1], [2, 2, 2], [3, 3], [4], [6]]
+from collections import Counter
 def solution_mine(N, stages):
     answer = []
 
+    # {'1' : 2, '2' : 3, ... }
+    result = {str(i): 0 for i in range(N + 1)}
+    for i in stages:
+        if str(i) in result.keys():
+            result[str(i)] += 1
+        else:
+            if i == N + 1:
+                result[str(0)] += 1
 
+    # 마지막까지 성공한 사람
+    success = {'0': result['0']}
+    del (result['0'])
+
+    denominator = len(stages)
+    failing_rate_lst = []
+    for stage, cnt in result.items():
+        failing_rate = 0
+        if cnt != 0:
+            failing_rate = cnt / denominator
+            failing_rate_lst.append(failing_rate)
+            denominator -= cnt
+        else:
+            failing_rate = 0
+            failing_rate_lst.append(failing_rate)
+
+    sort_failing_rate_lst = sorted(failing_rate_lst,
+                                   reverse=True)
+    answer = [sort_failing_rate_lst.index(i) + 1
+              for i in failing_rate_lst]
     return answer
 
 # print(solution_mine(N_1, stages_1))
@@ -69,6 +88,29 @@ def solution_best(N, stages):
             result[stage] = 0
     answer = sorted(result, key=lambda x: result[x], reverse=True)
     return answer
+#
+# print(solution_best(N_1, stages_1))
+# print(solution_best(N_2, stages_2))
 
-print(solution_best(N_1, stages_1))
+
+def solution_other(N, stages):
+    answer = []
+    _len = len(stages)
+    _num = 0
+
+    for x in range(1, N + 1):
+        for y in stages:
+            if x == y:
+                _num += 1
+        if _num > 0:
+            answer.append(_num / _len)
+            _len = _len - _num
+            _num = 0
+        else:
+            answer.append(0)
+    answer = sorted(range(len(answer)), key=lambda k: answer[k], reverse=True)
+    answer = [x + 1 for x in answer]
+    return answer
+
+print(solution_other(N_1, stages_1))
 print(solution_best(N_2, stages_2))

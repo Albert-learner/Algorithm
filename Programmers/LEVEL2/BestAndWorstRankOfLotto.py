@@ -45,6 +45,22 @@ def solution_best(lottos, win_nums):
             match += 1
     return [answer[cnt_0 + match], answer[match]]
 
-print(solution_best(lottos_1, win_nums_1))
-print(solution_best(lottos_2, win_nums_2))
-print(solution_best(lottos_3, win_nums_3))
+# print(solution_best(lottos_1, win_nums_1))
+# print(solution_best(lottos_2, win_nums_2))
+# print(solution_best(lottos_3, win_nums_3))
+
+from collections import Counter
+def solution_other(lottos, win_nums):
+    lotto = {6: 1, 5: 2, 4: 3, 3: 4, 2: 5, 1: 6, 0: 6}
+
+    c = Counter(lottos) - Counter(win_nums)
+    print(Counter(lottos))
+    print(Counter(win_nums))
+    print(c)
+
+    cnt = 6 - sum([v for k, v in c.items()])
+    return [lotto[cnt + c[0]], lotto[cnt]]
+
+print(solution_other(lottos_1, win_nums_1))
+# print(solution_other(lottos_2, win_nums_2))
+# print(solution_other(lottos_3, win_nums_3))
