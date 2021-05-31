@@ -127,6 +127,72 @@ def solution_other(rows, columns, queries):
 
     return answer
 
-print(solution_other(rows_1, columns_1, queries_1))
-print(solution_other(rows_2, columns_2, queries_2))
-print(solution_other(rows_3, columns_3, queries_3))
+# print(solution_other(rows_1, columns_1, queries_1))
+# print(solution_other(rows_2, columns_2, queries_2))
+# print(solution_other(rows_3, columns_3, queries_3))
+
+# 좀 더 직관적인 풀이
+def solution_other2(rows, columns, queries):
+    answer = []
+
+    board = [[i + (j) * columns for i in range(1, columns + 1)] for j in range(rows)]
+    # print(board)
+
+    for a, b, c, d in queries:
+        stack = []
+        r1, c1, r2, c2 = a - 1, b - 1, c - 1, d - 1
+
+        for i in range(c1, c2 + 1):
+
+            stack.append(board[r1][i])
+            if len(stack) == 1:
+                continue
+            else:
+                board[r1][i] = stack[-2]
+
+        for j in range(r1 + 1, r2 + 1):
+            stack.append(board[j][i])
+            board[j][i] = stack[-2]
+
+        for k in range(c2 - 1, c1 - 1, -1):
+            stack.append(board[j][k])
+            board[j][k] = stack[-2]
+
+        for l in range(r2 - 1, r1 - 1, -1):
+            stack.append(board[l][k])
+            board[l][k] = stack[-2]
+
+        answer.append(min(stack))
+
+    return answer
+
+# print(solution_other2(rows_1, columns_1, queries_1))
+# print(solution_other2(rows_2, columns_2, queries_2))
+# print(solution_other2(rows_3, columns_3, queries_3))
+
+def solution_best(rows, columns, queries):
+    matrix = [list(range(r * columns + 1, r * columns + columns + 1)) for r in range(rows)]
+
+    ans = []
+    for x1, y1, x2, y2 in queries:
+        arr = matrix[x1 - 1][y1 - 1:y2] + \
+              [matrix[i][y2 - 1] for i in range(x1 - 1, x2)][1:-1] + \
+              matrix[x2 - 1][y1 - 1:y2][::-1] + \
+              [matrix[i][y1 - 1] for i in range(x1 - 1, x2)][::-1][1:-1]
+        ans.append(min(arr))
+
+        arr = [arr[-1]] + arr[:-1]
+        a, b, c, d = arr[:y2 - y1 + 1], arr[y2 - y1 + 1: y2 - y1 + x2 - x1], arr[
+                                                                             y2 - y1 + x2 - x1:y2 - y1 + x2 - x1 + y2 - y1 + 1], arr[
+                                                                                                                                 y2 - y1 + x2 - x1 + y2 - y1 + 1:]
+        matrix[x1 - 1][y1 - 1:y2] = a
+        matrix[x2 - 1][y1 - 1:y2] = c[::-1]
+
+        matrix = list(map(list, zip(*matrix)))
+        matrix[y2 - 1][x1:x2 - 1] = b
+        matrix[y1 - 1][x1:x2 - 1] = d[::-1]
+        matrix = list(map(list, zip(*matrix)))
+
+    return ans
+
+print(solution_best(rows_1, columns_1, queries_1))
