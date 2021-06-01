@@ -196,3 +196,5 @@ def solution_best(rows, columns, queries):
     return ans
 
 print(solution_best(rows_1, columns_1, queries_1))
+print(solution_best(rows_2, columns_2, queries_2))
+print(solution_best(rows_3, columns_3, queries_3))
