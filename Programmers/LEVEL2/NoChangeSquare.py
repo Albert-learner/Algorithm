@@ -23,6 +23,7 @@ h_1 = 12
 
 print(solution(w_1, h_1))
 
+
 def GCD(x, y): return y if x == 0 else GCD(y % x, x)
 def solution_best(w, h):
     answer = w * h - (w + h - GCD(w, h))

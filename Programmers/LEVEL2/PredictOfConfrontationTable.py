@@ -1,6 +1,5 @@
 # 37. 예상 대진표
 
-
 def solution(n, a, b):
     answer = 0
 
