@@ -31,7 +31,8 @@ def solution_other(n):
 
     return answer
 
-print(solution_other(n_1))
-print(solution_other(n_2))
-print(solution_other(n_3))
-print(solution_other(n_4))
+# print(solution_other(n_1))
+# print(solution_other(n_2))
+# print(solution_other(n_3))
+# print(solution_other(n_4))
+
