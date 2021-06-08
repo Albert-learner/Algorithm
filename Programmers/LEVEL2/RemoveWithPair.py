@@ -39,8 +39,8 @@ def solution_other(s):
 
     return int(not(answer))
 
-print(solution_other(s_1))
-print(solution_other(s_2))
+# print(solution_other(s_1))
+# print(solution_other(s_2))
 
 def solution_best(s):
     answer = 0
@@ -56,5 +56,6 @@ def solution_best(s):
         answer = 1
     return answer
 
-print(solution_best(s_1))
-print(solution_best(s_2))
+# print(solution_best(s_1))
+# print(solution_best(s_2))
+
