@@ -24,7 +24,7 @@ record_1 = ["Enter uid1234 Muzi",
             "Enter uid1234 Prodo",
             "Change uid4567 Ryan"]
 
-# print(solution(record_1))
+print(solution(record_1))
 
 '''
 어떤 경우에 딕셔너리에 추가를 해야 하는지 생각을 잘못함. 한 번에 다 생각하려고 하지 않기
@@ -68,14 +68,14 @@ def solution_other(record):
             answer.append(namespace[r.split(' ')[1]] + printer[r.split(' ')[0]])
     return answer
 
-print(solution_other(record_1))
+# print(solution_other(record_1))
 
-def solution_best(record):
-    user_id = {EC.split()[1]: EC.split()[-1] for EC in record if EC.startswith('Enter') or EC.startswith('Change')}
+def solution_best(records):
+    user_id = {EC.split()[1]: EC.split()[-1] for EC in records if EC.startswith('Enter') or EC.startswith('Change')}
     return [f'{user_id[E_L.split()[1]]}님이 들어왔습니다.' if E_L.startswith('Enter') else f'{user_id[E_L.split()[1]]}님이 나갔습니다.'
-            for E_L in record if not E_L.startswith('Change')]
+            for E_L in records if not E_L.startswith('Change')]
 
-print(solution_best(record_1))
+# print(solution_best(record_1))
 '''
 처음 풀이하는데 있어서 Enter에 대해 먼저 dict를 만들고 Change에 대해 dict를 만들어서 에러가 발생
 다음 반례를 생각해보길,

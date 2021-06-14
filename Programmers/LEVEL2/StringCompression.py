@@ -74,11 +74,11 @@ def solution_best(s):
     answer = min(pattern)
     return answer
 
-print(solution_best(s_1))
-print(solution_best(s_2))
-print(solution_best(s_3))
-print(solution_best(s_4))
-print(solution_best(s_5))
+# print(solution_best(s_1))
+# print(solution_best(s_2))
+# print(solution_best(s_3))
+# print(solution_best(s_4))
+# print(solution_best(s_5))
 
 def solution_other(s):
     length = []
@@ -113,3 +113,4 @@ def solution_other(s):
 # print(solution_other(s_3))
 # print(solution_other(s_4))
 # print(solution_other(s_5))
+
