@@ -127,3 +127,29 @@ print(solution_good(cacheSize_3, cities_3))
 print(solution_good(cacheSize_4, cities_4))
 print(solution_good(cacheSize_5, cities_5))
 print(solution_good(cacheSize_6, cities_6))
+
+'''
+deque의 maxlen인자를 사용하여 불필요한 과정 줄임
+queue가 꽉 찬 상태에서 새 아이템을 넣으면 첫 아이템이 자동으로 삭제됨.
+'''
+def solution_best(cacheSize, cities):
+    answer = 0
+    cache = deque(maxlen = cacheSize)
+
+    for city in cities:
+        city = city.lower()
+        if city in cache:
+            cache.remove(city)
+            cache.append(city)
+            answer += 1
+        else:
+            cache.append(city)
+            answer += 5
+    return answer
+
+print(solution_best(cacheSize_1, cities_1))
+print(solution_best(cacheSize_2, cities_2))
+print(solution_best(cacheSize_3, cities_3))
+print(solution_best(cacheSize_4, cities_4))
+print(solution_best(cacheSize_5, cities_5))
+print(solution_best(cacheSize_6, cities_6))
