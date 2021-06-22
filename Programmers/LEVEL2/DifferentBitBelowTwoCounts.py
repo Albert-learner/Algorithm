@@ -56,7 +56,7 @@ def solution_best(numbers):
     answer = []
 
     for idx, val in enumerate(numbers):
-        answer.append((val ^ (val + 1)) >> 2 + val + 1)
+        answer.append(((val ^ (val + 1)) >> 2) + val + 1)
     return answer
 
 print(solution_best(numbers_1))

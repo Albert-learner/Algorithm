@@ -43,12 +43,13 @@ def solution(numbers, target):
     answer = 0
 
     lst = [(x, -x) for x in numbers]
+
     s = list(map(sum, product(*lst)))
     answer = s.count(target)
 
     return answer
 
-# print(solution(numbers_1, target_1))
+print(solution(numbers_1, target_1))
 
 '''
 3. BFS(넓이 우선 탐색) 풀이

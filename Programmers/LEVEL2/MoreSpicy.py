@@ -3,9 +3,20 @@ import heapq as hq
 
 def solution(scovile, K):
     answer = 0
+    hq.heapify(scovile)
 
+    while scovile[0] < K:
+        mix_scov = hq.heappop(scovile) + hq.heappop(scovile) * 2
+        hq.heappush(scovile, mix_scov)
+        answer += 1
+        if len(scovile) == 1 and scovile[0] < K:
+            return -1
 
     return answer
+
+scovile_1 = [1, 2, 3, 9, 10, 12]
+K_1 = 7
+print(solution(scovile_1, K_1))
 
 # 가장 작은 값을 생각하자!! ... 힙 안 쓰면 초과 걸리네
 def solution_error(scovile, K):
@@ -22,12 +33,12 @@ def solution_error(scovile, K):
         answer += 1
     return answer
 
-scovile_1 = [1, 2, 3, 9, 10, 12]
-K_1 = 7
+# print(solution_error(scovile_1, K_1))
 
-print(solution_error(scovile_1, K_1))
+'''
 
-def solution_best(scovile, K):
+'''
+def solution_other(scovile, K):
     answer = 0
 
     heap = []
@@ -44,4 +55,5 @@ def solution_best(scovile, K):
 
     return answer
 
-# print(solution_best(scovile_1, K_1))
+# print(solution_other(scovile_1, K_1))
+
