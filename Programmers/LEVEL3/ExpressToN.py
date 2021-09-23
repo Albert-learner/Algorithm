@@ -91,5 +91,5 @@ def solution_best(N, number):
         DP.append(numbers)
     return answer
 
-print(solution_best(N_1, number_1))
-print(solution_best(N_2, number_2))
+# print(solution_best(N_1, number_1))
+# print(solution_best(N_2, number_2))
