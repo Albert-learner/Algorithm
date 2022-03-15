@@ -31,3 +31,18 @@ k_2 = 3
 
 print(solution(id_list_1, report_1, k_1))
 print(solution(id_list_2, report_2, k_2))
+
+def solution_best(id_list, report, k):
+    answer = [0] * len(id_list)
+
+    reports = {id : 0 for id in id_list}
+    for rep in set(report):
+        reports[rep.split()[1]] += 1
+
+    for rep in set(report):
+        if reports[rep.split()[1]] >= k:
+            answer[id_list.index(rep.split()[0])] += 1
+    return answer
+
+print(solution_best(id_list_1, report_1, k_1))
+print(solution_best(id_list_2, report_2, k_2))
