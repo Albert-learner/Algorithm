@@ -30,7 +30,7 @@ print(solution(numbers_3, k_3))
 # Solution Best by using math
 def solution_best(numbers, k):
     answer = 2 * (k - 1) % numbers[-1] + 1
-    
+
     return answer
 
 print(solution_best(numbers_1, k_1))
