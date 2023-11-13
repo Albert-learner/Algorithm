@@ -15,7 +15,7 @@ visited = [[[[False] * board_col for _ in range(board_row)] for _ in range(board
 dx, dy = (-1, 0, 1, 0), (0, 1, 0, -1)
 que = deque()
 
-# Save Red Blade position and Blue Blade position
+# Save Red Marble position and Blue Marble position
 def init():
     rx, ry, bx, by = [0] * 4
     for row in range(board_row):
@@ -51,7 +51,7 @@ def BFS():
             next_rx, next_ry, r_cnt = move(rx, ry, dx[four_dir], dy[four_dir])
             next_bx, next_by, b_cnt = move(bx, by, dx[four_dir], dy[four_dir])
 
-            # If Blue Blade in hole, it's not the end(failure)
+            # If Blue Marble in hole, it's not the end(failure)
             if board[next_bx][next_by] == 'O':
                 continue
 
@@ -59,9 +59,9 @@ def BFS():
                 print(depth)
                 return
 
-            # Except cases that Red Blade and Blue Blade are in same position
+            # Except cases that Red Marble and Blue Marble are in same position
             if next_rx == next_bx and next_ry == next_by:
-                # Move Blade back that move counts are more than another one
+                # Move Marble back that move counts are more than another one
                 if r_cnt > b_cnt:
                     next_rx -= dx[four_dir]
                     next_ry  -= dy[four_dir]
